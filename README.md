@@ -134,7 +134,61 @@
    Windows: Download and install from Tesseract OCR
    Set path in your Python code
 
+# Limitations
+Invoice Format Dependency:
+The system works best with structured invoices. Highly unstructured or very different invoice formats may reduce extraction accuracy.
+OCR Accuracy Issues:
+If the invoice image is low quality, blurred, or scanned poorly, the OCR (Tesseract) may extract incorrect text.
+Limited Data Extraction Rules:
+Some fields are extracted using regex and keyword matching, which may fail if the invoice format changes significantly.
+Language Limitation:
+The current system is optimized for English invoices only.
 
+# Improvements Implemented
+
+1️⃣ Improved OCR Text Extraction:
+    Implemented image preprocessing using OpenCV to enhance invoice readability before applying OCR.
+    This improves the accuracy of Tesseract OCR when extracting text from scanned invoices.
+
+2️⃣ Automated Invoice Data Extraction:
+    Developed logic to automatically extract key invoice fields such as:
+    Seller Name
+    GSTIN
+    Invoice Number
+    Order Date
+    Total Amount
+    Line Items
+  This removes the need for manual data entry.
+
+3️⃣ Structured Data Processing:
+    Converted unstructured OCR text into structured JSON data.
+    This structured format makes the data easier to store and process.
+
+4️⃣ Database Integration:
+    Designed a database with multiple tables:
+    Invoices Table
+    Line_Items Table
+    Tax Table
+  Implemented automatic insertion of extracted data into these tables.
+
+5️⃣ Expense Categorization:
+    Implemented a keyword-based categorization system that classifies expenses into categories such as:
+    Office Expenses
+    Tools & Software
+    Travel & Petrol
+    Others
+
+6️⃣ Handling Multiple Invoice Files:
+    The system processes multiple invoices automatically from a folder, making it scalable for batch processing.
+
+7️⃣ End-to-End Automation:
+    Built a pipeline that performs:
+    Invoice reading
+    OCR extraction
+    Data parsing
+    Categorization
+    Database storage
+   All these steps run automatically through a single Python script.
 
 
 
